@@ -1,4 +1,4 @@
-/*package data;
+package data;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -18,21 +18,22 @@ public class RecipeFileHandler {
     public RecipeFileHandler(String filePath) {
         this.filePath = filePath;
     }
-}
+ //エラー
 
     /**
      * 設問1: 一覧表示機能
-     * recipes.txtからレシピデータを読み込み、それをリスト形式で返します。 <br> 
+     * recipes.txtからレシピデータを読み込み、それをリスト形式で返します。 <br>
      * IOExceptionが発生したときは<i>Error reading file: 例外のメッセージ</i>とコンソールに表示します。
      *
      * @return レシピデータ
      */
-/*    public ArrayList<String> readRecipes() {
+    public ArrayList<String> readRecipes() {
         ArrayList<String> a = new ArrayList<>();
-        String filename = "resources/recipes.txt";
-        File dataFile = new File(filename);
+        // String filename = "resources/recipes.txt";
+        // File dataFile = new File(filename);
+        File dataFile = new File(filePath);
         if (dataFile.exists()) {
-            try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
                     a.add(line);
@@ -42,8 +43,8 @@ public class RecipeFileHandler {
         }
         return null;
     }
+    return a;
 }
- */
 
     /**
      * 設問2: 新規登録機能
@@ -54,21 +55,11 @@ public class RecipeFileHandler {
      * @param ingredients 材料名
      */
     //
-/*     public void addRecipe(String recipeName, String ingredients) {
-        String file = "resources.recipes";
-        BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-        Writer.write(line);
-        try {
-            System.out.println("Main :Menu");
-            System.out.println("1: Display Recipes");
-            System.out.println("2: Add New Recipe");
-            System.out.println("3: Search Recipe");
-            System.out.println("4: Exit Application");
-            System.out.println("Please choose an option: 1");
-            System.out.println("Recipes:");
+    public void addRecipe(String recipeName, String ingredients) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
+            writer.write(recipeName + ":" + ingredients);
         } catch (IOException e) {
-
+            e.printStackTrace();
         }
-    }
+    } //エラー
 }
-*/

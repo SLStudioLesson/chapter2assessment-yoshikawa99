@@ -37,12 +37,16 @@ public class RecipeUI {
                 switch (choice) {
                     case "1":
                         // 設問1: 一覧表示機能
+                        System.out.println("Disply the recipe");
+                        this.displayRecipes();
                         break;
                     case "2":
                         // 設問2: 新規登録機能
+                        System.out.println("Add new recipe");
                         break;
                     case "3":
                         // 設問3: 検索機能
+                        System.out.println("Search the recipe");
                         break;
                     case "4":
                         System.out.println("Exit the application.");
@@ -61,7 +65,27 @@ public class RecipeUI {
      * 設問1: 一覧表示機能
      * RecipeFileHandlerから読み込んだレシピデータを整形してコンソールに表示します。
      */
+    String file = "resources/recipes";
     private void displayRecipes() {
+        ArrayList<String> recipe = new ArrayList<>();
+        recipe = fileHandler.readRecipes();
+        //文字が空だった場合の出力
+        if (recipe.isEmpty()) {
+            System.out.println("No recipes available.");
+        } else {
+            System.out.println("Recipes");
+        }
+        //
+        for (String pair : recipe) {
+            String[] key = pair.split(",");
+            System.out.print(key[0]);
+            for (int i = 0; i < key.length; i++) {
+                System.out.println("," + key[i + 1]);
+            }
+            System.out.println();
+            
+        }
+
 
     }
 
@@ -72,7 +96,11 @@ public class RecipeUI {
      * @throws java.io.IOException 入出力が受け付けられない
      */
     private void addNewRecipe() throws IOException {
-
+        System.out.print("Enter recipe name:");
+        String recipeName = reader.readLine();
+        System.out.print("Enter main ingredients (comma separated):");
+        String ingredients = reader.readLine();
+        fileHandler.addRecipe(recipeName, ingredients);
     }
 
     /**
@@ -81,9 +109,9 @@ public class RecipeUI {
      *
      * @throws java.io.IOException 入出力が受け付けられない
      */
-    private void searchRecipe() throws IOException {
+    //private void searchRecipe() throws IOException {
 
-    }
+    //}
 
 }
 
