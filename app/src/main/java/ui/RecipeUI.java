@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import data.RecipeFileHandler;
 
@@ -24,7 +25,6 @@ public class RecipeUI {
     public void displayMenu() {
         while (true) {
             try {
-                System.out.println();
                 System.out.println("Main Menu:");
                 System.out.println("1: Display Recipes");
                 System.out.println("2: Add New Recipe");
@@ -37,12 +37,12 @@ public class RecipeUI {
                 switch (choice) {
                     case "1":
                         // 設問1: 一覧表示機能
-                        System.out.println("Disply the recipe");
+                        System.out.println("Recipes:");
                         this.displayRecipes();
                         break;
                     case "2":
                         // 設問2: 新規登録機能
-                        System.out.println("Add new recipe");
+                        this.addNewRecipe();
                         break;
                     case "3":
                         // 設問3: 検索機能
@@ -72,19 +72,24 @@ public class RecipeUI {
         //文字が空だった場合の出力
         if (recipe.isEmpty()) {
             System.out.println("No recipes available.");
-        } else {
-            System.out.println("Recipes");
         }
         //
         for (String pair : recipe) {
             String[] key = pair.split(",");
-            System.out.print(key[0]);
-            for (int i = 0; i < key.length; i++) {
-                System.out.println("," + key[i + 1]);
-            }
-            System.out.println();
+            System.out.println("-----------------------------------");
+            System.out.print("Recipe Name: ");
+            System.out.println(key[0]);
+            System.out.print("Main Ingredients: ");
+            for (int i = 0; i < key.length - 1; i++) {
+                System.out.print(key[i + 1]);
+                if (i < key.length -2) {
+                    System.out.print(",");
+                }
+                
+            }System.out.println();
             
-        }
+            
+        }System.out.println("-----------------------------------");
 
 
     }

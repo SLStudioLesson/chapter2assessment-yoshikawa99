@@ -41,7 +41,6 @@ public class RecipeFileHandler {
         } catch (IOException e) {
             System.out.println("Error reading file:" + e.getMessage());
         }
-        return null;
     }
     return a;
 }
@@ -58,8 +57,9 @@ public class RecipeFileHandler {
     public void addRecipe(String recipeName, String ingredients) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
             writer.write(recipeName + ":" + ingredients);
+            System.out.println("Recipe added successfully.");
         } catch (IOException e) {
             e.printStackTrace();
         }
-    } //エラー
+    }
 }
